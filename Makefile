@@ -1,7 +1,7 @@
 # These are the usual GKE variables.
 PROJECT       ?= clarketm-test
 ZONE          ?= us-west1-a
-CLUSTER       ?= prow
+CLUSTER       ?= prow-clarketm
 
 .PHONY: get-cluster-credentials
 get-cluster-credentials:
