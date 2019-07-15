@@ -1,5 +1,7 @@
 prowjob_namespace: default
 pod_namespace: test-pods
+log_level: debug
+
 plank:
   default_decoration_config:
     utility_images: # using the tag we identified above
@@ -11,6 +13,7 @@ plank:
       bucket: prow-clarketm-artifacts # the bucket we just made
       path_strategy: explicit
     gcs_credentials_secret: gcs-credentials # the secret we just made
+
 periodics:
   - interval: 10m
     name: echo-test
@@ -19,6 +22,7 @@ periodics:
       containers:
         - image: alpine
           command: ["/bin/date"]
+
 postsubmits:
   prow-clarketm:
     - name: test-postsubmit
@@ -27,6 +31,7 @@ postsubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
+
 presubmits:
   prow-clarketm:
     - name: test-presubmit
