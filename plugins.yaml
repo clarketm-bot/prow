@@ -1,4 +1,15 @@
+triggers:
+  - repos:
+      - prow
+
+size:
+  s:   10
+  m:   30
+  l:   100
+  xl:  500
+  xxl: 1000
+
 plugins:
   prow-clarketm:
     - size  # Auto-label size of PR
-#    - trigger  # Allow people to configure CI jobs to /test
+    - trigger  # Allow people to configure CI jobs to /test
