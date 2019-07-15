@@ -36,6 +36,19 @@ postsubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
+    - name: test-postsubmit2
+      decorate: true
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
+  prow-clarketm/sample:
+    - name: test-postsubmit3
+      decorate: true
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
 
 presubmits:
   prow-clarketm/prow:
@@ -47,3 +60,22 @@ presubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
+    - name: test-presubmit2
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
+  prow-clarketm/sample:
+    - name: test-presubmit3
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
+
+
