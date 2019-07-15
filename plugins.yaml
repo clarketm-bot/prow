@@ -1,4 +1,4 @@
 plugins:
-  prow-clarketm:
+  prow-clarketm/prow:
     - size  # Auto-label size of PR
     - trigger  # Allow people to configure CI jobs to /test

@@ -20,7 +20,7 @@ periodics:
         - image: alpine
           command: ["/bin/date"]
 postsubmits:
-  prow-clarketm:
+  prow-clarketm/prow:
     - name: test-postsubmit
       decorate: true
       spec:
@@ -28,7 +28,7 @@ postsubmits:
           - image: alpine
             command: ["/bin/printenv"]
 presubmits:
-  prow-clarketm:
+  prow-clarketm/prow:
     - name: test-presubmit
       decorate: true
       always_run: true
