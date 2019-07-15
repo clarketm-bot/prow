@@ -22,6 +22,7 @@ plugins:
     - dog # /bark replies with dog pictures
     - help  # Support /help and /good-first-issue
     - hold  # Support /hold to delay merge
+    - label
     - lgtm  # Allow /lgtm
     - lifecycle  # Allow /lifecycle stale
     - override
