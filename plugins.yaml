@@ -1,7 +1,6 @@
 triggers:
   - repos:
       - prow-clarketm
-      - prow-clarketm/prow
 
 approve:
   - repos:
