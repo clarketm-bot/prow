@@ -5,6 +5,7 @@ triggers:
 approve:
   - repos:
       - prow-clarketm
+
 size:
   s:   10
   m:   30
