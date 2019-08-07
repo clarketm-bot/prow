@@ -4,5 +4,8 @@
 out
 gen
 
+# YAML
+cluster.yaml
+
 # JSON
 service-account.json
