@@ -7,7 +7,7 @@ approve:
       - prow-clarketm
 
 size:
-  s:   10
+  s:   15
   m:   30
   l:   100
   xl:  500
@@ -31,3 +31,4 @@ plugins:
     - verify-owners # Validates OWNERS file changes in PRs.
     - wip  # Auto-hold PRs with WIP in title
     - yuks # Let prow tell a /joke
+
