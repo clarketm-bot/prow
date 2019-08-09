@@ -1,11 +1,11 @@
 # These are the usual GKE variables.
 PROJECT       ?= prow-clarketm
-ZONE          ?= us-central1-a
+ZONE          ?= us-west1-a
 CLUSTER       ?= prow
 
 .PHONY: get-cluster-credentials
 get-cluster-credentials:
-	gcloud container clusters get-credentials "$(CLUSTER)" --project="$(PROJECT)" --zone="$(ZONE)"
+	CLOUDSDK_CONTAINER_USE_CLIENT_CERTIFICATE=True gcloud container clusters get-credentials "$(CLUSTER)" --project="$(PROJECT)" --zone="$(ZONE)"
 
 .PHONY: update-plugins
 update-plugins: get-cluster-credentials
