@@ -50,21 +50,6 @@ periodics:
           containers:
               - image: alpine
                 command: ["/bin/date"]
-    - interval: 30s
-      name: echo-test2
-      cluster: default
-      decorate: true
-      spec:
-          containers:
-              - image: alpine
-                command: ["/bin/date"]
-    - interval: 30s
-      name: echo-test3
-      decorate: true
-      spec:
-          containers:
-              - image: alpine
-                command: ["/bin/date"]
 
 postsubmits:
     prow-clarketm/prow:
