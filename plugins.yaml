@@ -1,34 +1,34 @@
 triggers:
-  - repos:
-      - prow-clarketm
+    - repos:
+          - prow-clarketm
 
 approve:
-  - repos:
-      - prow-clarketm
+    - repos:
+          - prow-clarketm
 
 size:
-  s:   15
-  m:   30
-  l:   100
-  xl:  500
-  xxl: 1000
+    s:   15
+    m:   30
+    l:   100
+    xl:  500
+    xxl: 1000
 
 plugins:
-  prow-clarketm:
-    - approve  # Allow OWNERS to /approve
-    - assign  # Allow /assign and /cc
-    - blunderbuss  # Auto-assign people
-    - cat # /meow replies with cat pictures
-    - dog # /bark replies with dog pictures
-    - help  # Support /help and /good-first-issue
-    - hold  # Support /hold to delay merge
-    - label
-    - lgtm  # Allow /lgtm
-    - lifecycle  # Allow /lifecycle stale
-    - override
-    - size  # Auto-label size of PR
-    - trigger  # Allow people to configure CI jobs to /test
-    - verify-owners # Validates OWNERS file changes in PRs.
-    - wip  # Auto-hold PRs with WIP in title
-    - yuks # Let prow tell a /joke
+    prow-clarketm:
+        - approve  # Allow OWNERS to /approve
+        - assign  # Allow /assign and /cc
+        - blunderbuss  # Auto-assign people
+        - cat # /meow replies with cat pictures
+        - dog # /bark replies with dog pictures
+        - help  # Support /help and /good-first-issue
+        - hold  # Support /hold to delay merge
+        - label
+        - lgtm  # Allow /lgtm
+        - lifecycle  # Allow /lifecycle stale
+        - override
+        - size  # Auto-label size of PR
+        - trigger  # Allow people to configure CI jobs to /test
+        - verify-owners # Validates OWNERS file changes in PRs.
+        - wip  # Auto-hold PRs with WIP in title
+        - yuks # Let prow tell a /joke
 
