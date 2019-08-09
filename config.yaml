@@ -44,6 +44,7 @@ github_reporter:
 periodics:
     - interval: 10m
       name: echo-test
+      cluster: build
       decorate: true
       spec:
           containers:
