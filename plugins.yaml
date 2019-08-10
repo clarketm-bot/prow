@@ -7,7 +7,7 @@ approve:
           - prow-clarketm
 
 size:
-    s:   15
+    s:   20
     m:   30
     l:   100
     xl:  500
