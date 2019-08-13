@@ -48,9 +48,24 @@ github_reporter:
         - postsubmit
 
 periodics:
-    - interval: 30s
+    - interval: 15m
       name: echo-test
       cluster: build
+      decorate: true
+      spec:
+          containers:
+              - image: alpine
+                command: ["/bin/date"]
+    - interval: 15m
+      name: echo-test2
+      cluster: default
+      decorate: true
+      spec:
+          containers:
+              - image: alpine
+                command: ["/bin/date"]
+    - interval: 15m
+      name: echo-test3
       decorate: true
       spec:
           containers:
