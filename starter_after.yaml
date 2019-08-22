@@ -225,7 +225,8 @@ spec:
                   args:
                       - --dry-run=false
                       - --config-path=/etc/config/config.yaml
-                      - --build-cluster=/etc/cluster/cluster.yaml
+#                      - --build-cluster=/etc/cluster/cluster.yaml
+                      - --kubeconfig=/etc/kubeconfig/config
                   volumeMounts:
                       - name: oauth
                         mountPath: /etc/github
@@ -233,8 +234,11 @@ spec:
                       - name: config
                         mountPath: /etc/config
                         readOnly: true
-                      - mountPath: /etc/cluster
-                        name: cluster
+#                      - mountPath: /etc/cluster
+#                        name: cluster
+#                        readOnly: true
+                      - mountPath: /etc/kubeconfig
+                        name: kubeconfig
                         readOnly: true
             volumes:
                 - name: oauth
@@ -243,10 +247,14 @@ spec:
                 - name: config
                   configMap:
                       name: config
-                - name: cluster
+#                - name: cluster
+#                  secret:
+#                      defaultMode: 420
+#                      secretName: build-cluster
+                - name: kubeconfig
                   secret:
                       defaultMode: 420
-                      secretName: build-cluster
+                      secretName: kubeconfig
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -311,12 +319,20 @@ spec:
                       - --config-path=/etc/config/config.yaml
                       - --tide-url=http://tide/
                       - --hook-url=http://hook:8888/plugin-help
+#                      - --build-cluster=/etc/cluster/cluster.yaml
+                      - --kubeconfig=/etc/kubeconfig/config
                   ports:
                       - name: http
                         containerPort: 8080
                   volumeMounts:
                       - name: config
                         mountPath: /etc/config
+                        readOnly: true
+#                      - mountPath: /etc/cluster
+#                        name: cluster
+#                        readOnly: true
+                      - mountPath: /etc/kubeconfig
+                        name: kubeconfig
                         readOnly: true
                   livenessProbe:
                       httpGet:
@@ -335,6 +351,14 @@ spec:
                 - name: config
                   configMap:
                       name: config
+#                - name: cluster
+#                  secret:
+#                      defaultMode: 420
+#                      secretName: build-cluster
+                - name: kubeconfig
+                  secret:
+                      defaultMode: 420
+                      secretName: kubeconfig
 ---
 apiVersion: v1
 kind: Service

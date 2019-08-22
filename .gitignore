@@ -6,6 +6,12 @@ gen
 
 # YAML
 cluster.yaml
+*secrets.yaml
+*serviceaccount.yaml
 
 # JSON
 service-account.json
+
+# Other
+*config
+istio-prow-build*
