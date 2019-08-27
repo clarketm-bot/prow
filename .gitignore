@@ -5,7 +5,7 @@ out
 gen
 
 # YAML
-cluster.yaml
+*cluster.yaml
 *secrets.yaml
 *serviceaccount.yaml
 
