@@ -13,5 +13,6 @@ gen
 service-account.json
 
 # Other
-*config
+gke_*
+*config*
 istio-prow-build*
