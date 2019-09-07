@@ -55,7 +55,8 @@ branch-protection:
                         dev:
                             protect: true
                     restrictions: # only allow admins
-                        users: []
+                        users:
+                            - j-orangeman
                         teams: []
                     required_pull_request_reviews:
                         required_approving_review_count: 1
@@ -133,6 +134,14 @@ presubmits:
                 containers:
                     -   image: alpine
                         command: ["/bin/date"]
+        -   name: test-presubmit-fail
+            decorate: true
+            always_run: true
+            skip_report: false
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/bash", "-c", "exit 1"]
     prow-clarketm/sample:
         -   name: test-presubmit3
             decorate: true
@@ -142,4 +151,12 @@ presubmits:
                 containers:
                     -   image: alpine
                         command: ["/bin/date"]
+        -   name: test-presubmit-fail
+            decorate: true
+            always_run: true
+            skip_report: false
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/bash", "-c", "exit 1"]
 
