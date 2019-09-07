@@ -136,6 +136,7 @@ presubmits:
                         command: ["/bin/date"]
         -   name: test-presubmit-fail
             decorate: true
+            optional: true
             always_run: true
             skip_report: false
             spec:
