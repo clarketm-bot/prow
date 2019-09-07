@@ -23,24 +23,45 @@ sinker:
 tide:
     sync_period: 2m
     queries:
-        - orgs:
-              - prow-clarketm
-          labels:
-              - lgtm
-              - approved
-          missingLabels:
-              - do-not-merge
-              - do-not-merge/blocked-paths
-              - do-not-merge/hold
-              - do-not-merge/invalid-commit-message
-              - do-not-merge/invalid-owners-file
-              - do-not-merge/release-note-label-needed
-              - do-not-merge/work-in-progress
-              - needs-rebase
+        -   orgs:
+                - prow-clarketm
+            labels:
+                - lgtm
+                - approved
+            missingLabels:
+                - do-not-merge
+                - do-not-merge/blocked-paths
+                - do-not-merge/hold
+                - do-not-merge/invalid-commit-message
+                - do-not-merge/invalid-owners-file
+                - do-not-merge/release-note-label-needed
+                - do-not-merge/work-in-progress
+                - needs-rebase
     blocker_label: tide/merge-blocker
     squash_label: tide/merge-method-squash
     rebase_label: tide/merge-method-rebase
     merge_label: tide/merge-method-merge
+
+branch-protection:
+    orgs:
+        prow-clarketm:
+            protect: true
+            repos:
+                prow:
+                    protect: false
+                    branches:
+                        master:
+                            protect: true
+                        dev:
+                            protect: true
+                    restrictions: # only allow admins
+                        users: []
+                        teams: []
+                    required_pull_request_reviews:
+                        required_approving_review_count: 1
+                sample:
+                    protect: true
+
 
 github_reporter:
     job_types_to_report:
@@ -48,77 +69,77 @@ github_reporter:
         - postsubmit
 
 periodics:
-    - interval: 15m
-      name: echo-test
-      cluster: build
-      decorate: true
-      spec:
-          containers:
-              - image: alpine
-                command: ["/bin/date"]
-    - interval: 15m
-      name: echo-test2
-      cluster: default
-      decorate: true
-      spec:
-          containers:
-              - image: alpine
-                command: ["/bin/date"]
-    - interval: 15m
-      name: echo-test3
-      decorate: true
-      spec:
-          containers:
-              - image: alpine
-                command: ["/bin/date"]
+    -   interval: 15m
+        name: echo-test
+        cluster: build
+        decorate: true
+        spec:
+            containers:
+                -   image: alpine
+                    command: ["/bin/date"]
+    -   interval: 15m
+        name: echo-test2
+        cluster: default
+        decorate: true
+        spec:
+            containers:
+                -   image: alpine
+                    command: ["/bin/date"]
+    -   interval: 15m
+        name: echo-test3
+        decorate: true
+        spec:
+            containers:
+                -   image: alpine
+                    command: ["/bin/date"]
 
 postsubmits:
     prow-clarketm/prow:
-        - name: test-postsubmit
-          decorate: true
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/printenv"]
-        - name: test-postsubmit2
-          decorate: true
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/date"]
+        -   name: test-postsubmit
+            decorate: true
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/printenv"]
+        -   name: test-postsubmit2
+            decorate: true
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/date"]
     prow-clarketm/sample:
-        - name: test-postsubmit3
-          decorate: true
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/date"]
+        -   name: test-postsubmit3
+            decorate: true
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/date"]
 
 presubmits:
     prow-clarketm/prow:
-        - name: test-presubmit
-          decorate: true
-          always_run: true
-          skip_report: false
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/printenv"]
-        - name: test-presubmit2
-          decorate: true
-          always_run: true
-          skip_report: false
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/date"]
+        -   name: test-presubmit
+            decorate: true
+            always_run: true
+            skip_report: false
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/printenv"]
+        -   name: test-presubmit2
+            decorate: true
+            always_run: true
+            skip_report: false
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/date"]
     prow-clarketm/sample:
-        - name: test-presubmit3
-          decorate: true
-          always_run: true
-          skip_report: false
-          spec:
-              containers:
-                  - image: alpine
-                    command: ["/bin/date"]
+        -   name: test-presubmit3
+            decorate: true
+            always_run: true
+            skip_report: false
+            spec:
+                containers:
+                    -   image: alpine
+                        command: ["/bin/date"]
 
