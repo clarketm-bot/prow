@@ -15,4 +15,5 @@ service-account.json
 # Other
 gke_*
 *config*
+*build-cluster*
 istio-prow-build*

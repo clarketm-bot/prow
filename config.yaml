@@ -54,6 +54,8 @@ branch-protection:
                             protect: true
                         dev:
                             protect: true
+                        test:
+                            protect: true
                     restrictions: # only allow admins
                         users:
                             - j-orangeman
