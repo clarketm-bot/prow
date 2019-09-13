@@ -20,6 +20,11 @@ sinker:
     max_prowjob_age: 48h
     max_pod_age: 30m
 
+deck:
+    rerun_auth_config:
+        github_users:
+            - clarketm
+
 tide:
     sync_period: 2m
     queries:

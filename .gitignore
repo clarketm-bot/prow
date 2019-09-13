@@ -8,6 +8,7 @@ gen
 *cluster.yaml
 *secrets.yaml
 *serviceaccount.yaml
+*rerun.yaml
 
 # JSON
 service-account.json
@@ -17,3 +18,4 @@ gke_*
 *config*
 *build-cluster*
 istio-prow-build*
+*cookie.txt
