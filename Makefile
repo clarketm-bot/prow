@@ -23,6 +23,10 @@ update-deployment: get-cluster-credentials
 replace-deployment: get-cluster-credentials
 	kubectl replace -f ./starter_after.yaml
 
+.PHONY: delete-deployment
+delete-deployment: get-cluster-credentials
+	kubectl delete -f ./starter_after.yaml
+
 .PHONY: update-plugins
 update-plugins: get-cluster-credentials
 	kubectl create configmap plugins --from-file=plugins.yaml=plugins.yaml --dry-run -o yaml | kubectl replace configmap plugins -f -

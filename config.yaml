@@ -141,15 +141,15 @@ presubmits:
                 containers:
                     -   image: alpine
                         command: ["/bin/date"]
-        -   name: test-presubmit-fail
-            decorate: true
-            optional: true
-            always_run: true
-            skip_report: false
-            spec:
-                containers:
-                    -   image: alpine
-                        command: ["/bin/bash", "-c", "exit 1"]
+#        -   name: test-presubmit-fail
+#            decorate: true
+#            optional: true
+#            always_run: true
+#            skip_report: false
+#            spec:
+#                containers:
+#                    -   image: alpine
+#                        command: ["/bin/bash", "-c", "exit 1"]
     prow-clarketm/sample:
         -   name: test-presubmit3
             decorate: true
