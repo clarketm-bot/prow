@@ -19,3 +19,4 @@ gke_*
 *build-cluster*
 istio-prow-build*
 *cookie.txt
+*boskos-resources*
