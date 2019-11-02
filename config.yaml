@@ -175,6 +175,13 @@ periodics:
         - image: alpine
           command: ["sh"]
           args: ["-c", "echo hello"]
+  - interval: 1m
+    name: echo-test8
+    decorate: true
+    spec:
+      containers:
+        - image: alpine
+          args: ["echo", "hello"]
 
 postsubmits:
   prow-clarketm/prow:
