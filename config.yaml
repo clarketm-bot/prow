@@ -156,14 +156,6 @@ periodics:
     spec:
       containers:
         - image: alpine
-          command: ["bash"]
-          args: ["-c", "echo", "hello"]
-  - interval: 15m
-    name: echo-test8
-    decorate: true
-    spec:
-      containers:
-        - image: alpine
           command: ["sh"]
           args: ["-c", "echo hello"]
 
