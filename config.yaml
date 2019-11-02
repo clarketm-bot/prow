@@ -19,7 +19,7 @@ plank:
     datetime_format: "2006-01-02T15:04:05Z07:00"
 
 sinker:
-  resync_period: 1m
+  resync_period: 15m
   max_prowjob_age: 48h
   max_pod_age: 30m
 
@@ -80,7 +80,7 @@ github_reporter:
     - postsubmit
 
 periodics:
-  - interval: 1m
+  - interval: 15m
     name: echo-test
     cluster: build
     decorate: true
@@ -92,7 +92,7 @@ periodics:
       containers:
         - image: alpine
           command: ["ping", "-c", "10", "www.google.com"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test2
     cluster: default
     decorate: true
@@ -103,14 +103,14 @@ periodics:
       containers:
         - image: alpine
           command: ["ping", "-c", "10", "www.google.com"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test3
     decorate: true
     spec:
       containers:
         - image: alpine
           command: ["ping", "-c", "10", "www.google.com"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test4
     decorate: true
     spec:
@@ -118,7 +118,7 @@ periodics:
         - image: alpine
           command: ["ping"]
           args: ["-c", "10", "www.google.com"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test5a
     decorate: true
     spec:
@@ -126,7 +126,7 @@ periodics:
         - image: gcr.io/slchase-canary/transfigure
           command: ["bash"]
           args: ["-c", "echo hello"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test5b
     decorate: true
     spec:
@@ -134,7 +134,7 @@ periodics:
         - image: gcr.io/slchase-canary/transfigure
           command: ["sh"]
           args: ["-c", "echo hello"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test5c
     decorate: true
     spec:
@@ -142,7 +142,7 @@ periodics:
         - image: gcr.io/slchase-canary/transfigure
           command: ["echo"]
           args: ["hello"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test6
     decorate: true
     spec:
@@ -150,7 +150,7 @@ periodics:
         - image: alpine
           command: ["echo", "hello"]
           args: ["world"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test7
     decorate: true
     spec:
@@ -158,7 +158,7 @@ periodics:
         - image: alpine
           command: ["bash"]
           args: ["-c", "echo", "hello"]
-  - interval: 1m
+  - interval: 15m
     name: echo-test8
     decorate: true
     spec:
