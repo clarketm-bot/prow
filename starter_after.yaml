@@ -496,6 +496,8 @@ kind: Ingress
 metadata:
   namespace: default
   name: ing
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
     - secretName: prow-tls
