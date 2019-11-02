@@ -321,6 +321,7 @@ spec:
             - --hook-url=http://hook:8888/plugin-help
             #                      - --build-cluster=/etc/cluster/cluster.yaml
             - --kubeconfig=/etc/kubeconfig/config
+            - --spyglass=true
             - --cookie-secret=/etc/cookie/secret
             - --redirect-http-to=prow.travismclarke.com
             - --rerun-creates-job

@@ -3,20 +3,24 @@ pod_namespace: test-pods
 log_level: debug
 
 plank:
+  job_url_template: 'https://prow.travismclarke.com/view/gcs/prow-clarketm{{if eq .Spec.Type "presubmit"}}/pr-logs/pull/{{.Spec.Refs.Org}}_{{.Spec.Refs.Repo}}/{{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}{{else if eq .Spec.Type "batch"}}/pr-logs/pull/batch{{else}}/logs{{end}}/{{.Spec.Job}}/{{.Status.BuildID}}'
+  job_url_prefix_config:
+    '*': https://prow.travismclarke.com/view/gcs/
   pod_pending_timeout: 60m
-  default_decoration_config:
-    utility_images: # using the tag we identified above
-      clonerefs: "gcr.io/k8s-prow/clonerefs:v20190715-1dacc7e01"
-      initupload: "gcr.io/k8s-prow/initupload:v20190715-1dacc7e01"
-      entrypoint: "gcr.io/prow-clarketm/entrypoint:edge"
-      sidecar: "gcr.io/k8s-prow/sidecar:v20190715-1dacc7e01"
-    gcs_configuration:
-      bucket: prow-clarketm     # the bucket we just made
-      path_strategy: explicit
-    gcs_credentials_secret: gcs-credentials # the secret we just made
-    timeout: 4m
-#    cookiefile_secret: "abc"
-    datetime_format: "2006-01-02T15:04:05Z07:00"
+  default_decoration_configs:
+    '*':
+      utility_images: # using the tag we identified above
+        clonerefs: "gcr.io/k8s-prow/clonerefs:v20190715-1dacc7e01"
+        initupload: "gcr.io/k8s-prow/initupload:v20190715-1dacc7e01"
+        entrypoint: "gcr.io/prow-clarketm/entrypoint:edge"
+        sidecar: "gcr.io/k8s-prow/sidecar:v20190715-1dacc7e01"
+      gcs_configuration:
+        bucket: prow-clarketm     # the bucket we just made
+        path_strategy: explicit
+      gcs_credentials_secret: gcs-credentials # the secret we just made
+      timeout: 4m
+      #    cookiefile_secret: "abc"
+      datetime_format: "2006-01-02T15:04:05Z07:00"
 
 sinker:
   resync_period: 15m
@@ -24,6 +28,19 @@ sinker:
   max_pod_age: 30m
 
 deck:
+  spyglass:
+    size_limit: 500000000 # 500MB
+    gcs_browser_prefix: https://gcsweb.k8s.io/gcs/
+    viewers:
+      "started.json|finished.json":
+        - "metadata"
+      "build-log.txt":
+        - "buildlog"
+      "artifacts/junit.*\\.xml":
+        - "junit"
+      "artifacts/filtered.cov":
+        - "coverage"
+    announcement: "This page -- spyglass -- is the default viewer for prow.{{if .ArtifactPath}} For now, the deprecated gubernator page spyglass replaces <a href='https://gubernator.k8s.io/build/{{.ArtifactPath}}'>remains available</a>.{{end}}"
   rerun_auth_config:
     github_users:
       - clarketm
