@@ -20,7 +20,7 @@ plank:
       gcs_credentials_secret: gcs-credentials # the secret we just made
       timeout: 4m
       #    cookiefile_secret: "abc"
-      datetime_format: "2006-01-02T15:04:05Z07:00"
+#      datetime_format: "2006-01-02T15:04:05Z07:00"
 
 sinker:
   resync_period: 15m
@@ -103,7 +103,7 @@ periodics:
     decorate: true
     decoration_config:
       timeout: 3m
-      datetime_format: "-"
+      #      datetime_format: "-"
       cookiefile_secret: ""
     spec:
       containers:
@@ -115,7 +115,7 @@ periodics:
     decorate: true
     decoration_config:
       timeout: 2m
-      datetime_format: ""
+    #      datetime_format: ""
     spec:
       containers:
         - image: alpine
