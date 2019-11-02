@@ -97,8 +97,8 @@ periodics:
     cluster: default
     decorate: true
     decoration_config:
-        timeout: 2m
-        datetime_format: ""
+      timeout: 2m
+      datetime_format: ""
     spec:
       containers:
         - image: alpine
@@ -182,47 +182,47 @@ postsubmits:
             command: ["/bin/date"]
 
 presubmits:
-    prow-clarketm/prow:
-        -   name: test-presubmit
-            decorate: true
-            always_run: true
-            skip_report: false
-            spec:
-                containers:
-                    -   image: alpine
-                        command: ["/bin/printenv"]
-        -   name: test-presubmit2
-            decorate: true
-            always_run: true
-            skip_report: false
-            spec:
-                containers:
-                    -   image: alpine
-                        command: ["/bin/date"]
-#        -   name: test-presubmit-fail
-#            decorate: true
-#            optional: true
-#            always_run: true
-#            skip_report: false
-#            spec:
-#                containers:
-#                    -   image: alpine
-#                        command: ["/bin/bash", "-c", "exit 1"]
-    prow-clarketm/sample:
-        -   name: test-presubmit3
-            decorate: true
-            always_run: true
-            skip_report: false
-            spec:
-                containers:
-                    -   image: alpine
-                        command: ["/bin/date"]
-        -   name: test-presubmit-fail
-            decorate: true
-            always_run: true
-            skip_report: false
-            spec:
-                containers:
-                    -   image: alpine
-                        command: ["/bin/bash", "-c", "exit 1"]
+  prow-clarketm/prow:
+    - name: test-presubmit
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/printenv"]
+    - name: test-presubmit2
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
+  #        -   name: test-presubmit-fail
+  #            decorate: true
+  #            optional: true
+  #            always_run: true
+  #            skip_report: false
+  #            spec:
+  #                containers:
+  #                    -   image: alpine
+  #                        command: ["/bin/bash", "-c", "exit 1"]
+  prow-clarketm/sample:
+    - name: test-presubmit3
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/date"]
+    - name: test-presubmit-fail
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/bash", "-c", "exit 1"]
 
