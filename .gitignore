@@ -20,3 +20,4 @@ gke_*
 istio-prow-build*
 *cookie.txt
 *boskos-resources*
+oauth*
