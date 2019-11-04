@@ -21,3 +21,4 @@ istio-prow-build*
 *cookie.txt
 *boskos-resources*
 oauth*
+deck-oauth-proxy*

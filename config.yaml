@@ -28,6 +28,8 @@ sinker:
   max_pod_age: 30m
 
 deck:
+  hidden_repos:
+    - prow-clarketm/sample
   spyglass:
     size_limit: 500000000 # 500MB
     gcs_browser_prefix: https://gcsweb.k8s.io/gcs/
