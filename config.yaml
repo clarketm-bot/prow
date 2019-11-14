@@ -95,14 +95,14 @@ github_reporter:
     - postsubmit
 
 periodics:
-  - interval: 1m
-    name: broken-cluster-test
-    cluster: build2
-    decorate: true
-    spec:
-      containers:
-        - image: alpine
-          command: ["sleep", "100"]
+#  - interval: 1m
+#    name: broken-cluster-test
+#    cluster: build2
+#    decorate: true
+#    spec:
+#      containers:
+#        - image: alpine
+#          command: ["sleep", "100"]
   - interval: 15m
     name: echo-test
     cluster: build
@@ -221,14 +221,6 @@ presubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
-    - name: test-presubmit2
-      decorate: true
-      always_run: true
-      skip_report: false
-      spec:
-        containers:
-          - image: alpine
-            command: ["/bin/date"]
   #        -   name: test-presubmit-fail
   #            decorate: true
   #            optional: true
