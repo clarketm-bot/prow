@@ -88,6 +88,27 @@ branch-protection:
         sample:
           protect: true
 
+slack_reporter_configs:
+  '*':
+    job_types_to_report:
+      - presubmit
+      - postsubmit
+      - periodic
+    job_states_to_report:
+      - failure
+      - error
+    channel: test-failures
+    report_template: "Job *{{.Spec.Job}}* of type *{{.Spec.Type}}* ended with state *{{.Status.State}}*. <{{.Status.URL}}|View logs>"
+  prow-clarketm/prow:
+    job_types_to_report:
+      - presubmit
+      - postsubmit
+      - periodic
+    job_states_to_report:
+      - failure
+      - error
+    channel: test-failures
+    report_template: "Job *{{.Spec.Job}}* of type *{{.Spec.Type}}* ended with state *{{.Status.State}}*. <{{.Status.URL}}|View logs>"
 
 github_reporter:
   job_types_to_report:
@@ -95,14 +116,14 @@ github_reporter:
     - postsubmit
 
 periodics:
-#  - interval: 1m
-#    name: broken-cluster-test
-#    cluster: build2
-#    decorate: true
-#    spec:
-#      containers:
-#        - image: alpine
-#          command: ["sleep", "100"]
+  #  - interval: 1m
+  #    name: broken-cluster-test
+  #    cluster: build2
+  #    decorate: true
+  #    spec:
+  #      containers:
+  #        - image: alpine
+  #          command: ["sleep", "100"]
   - interval: 15m
     name: echo-test
     cluster: build
@@ -188,6 +209,13 @@ periodics:
       containers:
         - image: alpine
           args: ["echo", "hello"]
+  - interval: 1m
+    name: failure
+    decorate: true
+    spec:
+      containers:
+        - image: alpine
+          command: ["false"]
 
 postsubmits:
   prow-clarketm/prow:
@@ -221,15 +249,15 @@ presubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
-  #        -   name: test-presubmit-fail
-  #            decorate: true
-  #            optional: true
-  #            always_run: true
-  #            skip_report: false
-  #            spec:
-  #                containers:
-  #                    -   image: alpine
-  #                        command: ["/bin/bash", "-c", "exit 1"]
+    - name: test-presubmit-fail
+      decorate: true
+      optional: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/bash", "-c", "exit 1"]
   prow-clarketm/sample:
     - name: test-presubmit3
       decorate: true
