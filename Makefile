@@ -17,15 +17,15 @@ get-cluster-credentials: save-kubeconfig
 
 .PHONY: update-deployment
 update-deployment: get-cluster-credentials
-	kubectl apply -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml
+	kubectl apply -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
 
 .PHONY: replace-deployment
 replace-deployment: get-cluster-credentials
-	kubectl replace -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml
+	kubectl replace -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
 
 .PHONY: delete-deployment
 delete-deployment: get-cluster-credentials
-	kubectl delete -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml
+	kubectl delete -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
 
 .PHONY: update-plugins
 update-plugins: get-cluster-credentials
