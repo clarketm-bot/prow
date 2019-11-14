@@ -95,14 +95,14 @@ github_reporter:
     - postsubmit
 
 periodics:
-  - interval: 1m
-    name: broken-cluster-test
-    cluster: build2
-    decorate: true
-    spec:
-      containers:
-        - image: alpine
-          command: ["sleep", "100"]
+#  - interval: 1m
+#    name: broken-cluster-test
+#    cluster: build2
+#    decorate: true
+#    spec:
+#      containers:
+#        - image: alpine
+#          command: ["sleep", "100"]
   - interval: 15m
     name: echo-test
     cluster: build
