@@ -221,14 +221,6 @@ presubmits:
         containers:
           - image: alpine
             command: ["/bin/printenv"]
-    - name: test-presubmit2
-      decorate: true
-      always_run: true
-      skip_report: false
-      spec:
-        containers:
-          - image: alpine
-            command: ["/bin/date"]
   #        -   name: test-presubmit-fail
   #            decorate: true
   #            optional: true
