@@ -79,6 +79,8 @@ branch-protection:
           branches:
             master:
               protect: true
+            dev:
+              protect: true
           restrictions: # only allow admins
             users:
               - j-orangeman

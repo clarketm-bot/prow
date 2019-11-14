@@ -13,6 +13,13 @@ size:
   xl:  500
   xxl: 1000
 
+external_plugins:
+  prow-clarketm:
+    - name: cherrypicker
+      events:
+        - issue_comment
+        - pull_request
+
 plugins:
   prow-clarketm:
     - approve  # Allow OWNERS to /approve
