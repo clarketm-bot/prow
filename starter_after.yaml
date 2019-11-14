@@ -221,12 +221,13 @@ spec:
       serviceAccountName: "plank"
       containers:
         - name: plank
-          image: gcr.io/k8s-prow/plank:v20191101-c5bcba610
+          image: gcr.io/prow-clarketm/plank:edge
           args:
             - --dry-run=false
             - --config-path=/etc/config/config.yaml
             #                      - --build-cluster=/etc/cluster/cluster.yaml
             - --kubeconfig=/etc/kubeconfig/config
+            - --skip-report=true
           volumeMounts:
             - name: oauth
               mountPath: /etc/github
@@ -946,3 +947,79 @@ spec:
             - name: config
               configMap:
                 name: config
+---
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: crier
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: crier
+rules:
+  - apiGroups:
+      - "prow.k8s.io"
+    resources:
+      - "prowjobs"
+    verbs:
+      - "get"
+      - "watch"
+      - "list"
+      - "patch"
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: crier
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: crier
+subjects:
+  - kind: ServiceAccount
+    name: crier
+    namespace: default
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crier
+  labels:
+    app: crier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crier
+  template:
+    metadata:
+      labels:
+        app: crier
+    spec:
+      serviceAccountName: crier
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: crier
+          image: gcr.io/prow-clarketm/crier:edge
+          args:
+            - --github-workers=1
+            - --github-endpoint=https://api.github.com
+            - --slack-workers=1
+            - --slack-token-file=/etc/slack/token
+            - --config-path=/etc/config/config.yaml
+          volumeMounts:
+            - name: slack
+              mountPath: /etc/slack
+              readOnly: true
+            - name: config
+              mountPath: /etc/config
+              readOnly: true
+      volumes:
+        - name: slack
+          secret:
+            secretName: slack-token
+        - name: config
+          configMap:
+            name: config

@@ -88,6 +88,9 @@ spec:
             - --hook-url=http://hook:8888/plugin-help
             - --redirect-http-to=prow-private.travismclarke.com
             - --kubeconfig=/etc/kubeconfig/config
+            #            - --gcs-credentials-file=/etc/service-account/service-account.json
+            - --spyglass
+            - --hidden-only
           volumeMounts:
             - name: config
               mountPath: /etc/config
@@ -95,6 +98,9 @@ spec:
             - mountPath: /etc/kubeconfig
               name: kubeconfig
               readOnly: true
+          #            - name: service-account
+          #              mountPath: /etc/service-account
+          #              readOnly: true
           livenessProbe:
             httpGet:
               path: /healthz
@@ -118,7 +124,21 @@ spec:
             - --github-org=prow-clarketm
             - --http-address=0.0.0.0:4180
             - --upstream=http://localhost:8080
+            - --cookie-domain=prow-private.travismclarke.com
+            - --cookie-name=prow-private-travismclarke-oauth2-proxy
             - --email-domain=*
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: 4180
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 4180
+            initialDelaySeconds: 3
+            periodSeconds: 3
           env:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
@@ -135,16 +155,17 @@ spec:
                 secretKeyRef:
                   name: deck-oauth-proxy
                   key: cookieSecret
-            - name: OAUTH2_PROXY_COOKIE_DOMAIN
-              value: prow-private.travismclarke.com
       volumes:
         - name: config
           configMap:
-            name: private-config
+            name: config
         - name: kubeconfig
           secret:
             defaultMode: 420
             secretName: kubeconfig
+#        - name: service-account
+#          secret:
+#            secretName: service-account
 ---
 apiVersion: v1
 kind: Service
