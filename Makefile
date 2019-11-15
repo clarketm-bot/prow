@@ -38,3 +38,4 @@ update-config: get-cluster-credentials
 .PHONY: create-deck-oauth-proxy-secret
 create-deck-oauth-proxy-secret: get-cluster-credentials
 	kubectl create secret generic deck-oauth-proxy --from-file=clientID=./deck-oauth-proxy.clientID.yaml --from-file=clientSecret=./deck-oauth-proxy.clientSecret.yaml --from-file=cookieSecret=./deck-oauth-proxy.cookieSecret.yaml
+	
