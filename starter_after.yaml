@@ -279,7 +279,7 @@ spec:
         - name: sinker
           image: gcr.io/k8s-prow/sinker:v20191112-9f0441013
           args:
-            - --kubeconfig=/etc/kubeconfig/istio-config
+            - --kubeconfig=/etc/kubeconfig/config
             - --config-path=/etc/config/config.yaml
           volumeMounts:
             - name: config
