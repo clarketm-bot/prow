@@ -107,6 +107,7 @@ slack_reporter_configs:
       - postsubmit
       - periodic
     job_states_to_report:
+      - success
       - failure
       - error
     channel: test-failures
