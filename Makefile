@@ -17,15 +17,15 @@ get-cluster-credentials: save-kubeconfig
 
 .PHONY: update-deployment
 update-deployment: get-cluster-credentials
-	kubectl apply -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
+	kubectl apply -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml,./authentikos.yaml
 
 .PHONY: replace-deployment
 replace-deployment: get-cluster-credentials
-	kubectl replace -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
+	kubectl replace -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml,./authentikos.yaml
 
 .PHONY: delete-deployment
 delete-deployment: get-cluster-credentials
-	kubectl delete -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml
+	kubectl delete -f ./starter_after.yaml,./nginx.yaml,./deck_private.yaml,./cherrypicker.yaml,./authentikos.yaml
 
 .PHONY: update-plugins
 update-plugins: get-cluster-credentials
@@ -38,4 +38,3 @@ update-config: get-cluster-credentials
 .PHONY: create-deck-oauth-proxy-secret
 create-deck-oauth-proxy-secret: get-cluster-credentials
 	kubectl create secret generic deck-oauth-proxy --from-file=clientID=./deck-oauth-proxy.clientID.yaml --from-file=clientSecret=./deck-oauth-proxy.clientSecret.yaml --from-file=cookieSecret=./deck-oauth-proxy.cookieSecret.yaml
-	
