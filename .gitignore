@@ -22,3 +22,4 @@ istio-prow-build*
 *boskos-resources*
 oauth*
 deck-oauth-proxy*
+policybot

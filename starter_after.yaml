@@ -142,7 +142,7 @@ spec:
       terminationGracePeriodSeconds: 180
       containers:
         - name: hook
-          image: gcr.io/k8s-prow/hook:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/hook:v20200304-de88319ac
           imagePullPolicy: Always
           args:
             - --dry-run=false
@@ -221,7 +221,7 @@ spec:
       serviceAccountName: "plank"
       containers:
         - name: plank
-          image: gcr.io/k8s-prow/plank:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/plank:v20200304-de88319ac
           args:
             - --dry-run=false
             - --config-path=/etc/config/config.yaml
@@ -277,7 +277,7 @@ spec:
       serviceAccountName: "sinker"
       containers:
         - name: sinker
-          image: gcr.io/k8s-prow/sinker:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/sinker:v20200304-de88319ac
           args:
             - --kubeconfig=/etc/kubeconfig/config
             - --config-path=/etc/config/config.yaml
@@ -323,7 +323,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: deck
-          image: gcr.io/k8s-prow/deck:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/deck:v20200304-de88319ac
           args:
             - --config-path=/etc/config/config.yaml
             - --tide-url=http://tide/
@@ -336,7 +336,6 @@ spec:
             - --rerun-creates-job
             - --oauth-url=/github-login
             - --github-token-path=/etc/github/oauth
-            - --github-endpoint=http://ghproxy
             - --github-endpoint=https://api.github.com
             - --github-oauth-config-file=/etc/githuboauth/secret
           ports:
@@ -432,7 +431,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: horologium
-          image: gcr.io/k8s-prow/horologium:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/horologium:v20200304-de88319ac
           args:
             - --config-path=/etc/config/config.yaml
           volumeMounts:
@@ -466,7 +465,7 @@ spec:
       serviceAccountName: "tide"
       containers:
         - name: tide
-          image: gcr.io/k8s-prow/tide:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/tide:v20200304-de88319ac
           args:
             - --dry-run=false
             - --config-path=/etc/config/config.yaml
@@ -555,7 +554,7 @@ spec:
       terminationGracePeriodSeconds: 180
       containers:
         - name: statusreconciler
-          image: gcr.io/k8s-prow/status-reconciler:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/status-reconciler:v20200304-de88319ac
           args:
             - --dry-run=false
             - --continue-on-error=true
@@ -933,12 +932,11 @@ spec:
         spec:
           containers:
             - name: branchprotector
-              image: gcr.io/k8s-prow/branchprotector:v20191119-00c5af8fa
+              image: gcr.io/prow-clarketm/branchprotector:v20200304-de88319ac
               args:
                 - --config-path=/etc/config/config.yaml
                 - --github-token-path=/etc/github/oauth
                 - --confirm
-                - --github-endpoint=http://ghproxy
                 - --github-endpoint=https://api.github.com
               volumeMounts:
                 - name: oauth
@@ -1010,7 +1008,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: crier
-          image: gcr.io/k8s-prow/crier:v20191119-00c5af8fa
+          image: gcr.io/prow-clarketm/crier:v20200304-de88319ac
           imagePullPolicy: Always
           args:
             - --slack-workers=1

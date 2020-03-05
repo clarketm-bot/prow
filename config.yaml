@@ -6,14 +6,15 @@ plank:
   job_url_template: 'https://prow.travismclarke.com/view/gcs/prow-clarketm{{if eq .Spec.Type "presubmit"}}/pr-logs/pull/{{.Spec.Refs.Org}}_{{.Spec.Refs.Repo}}/{{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}{{else if eq .Spec.Type "batch"}}/pr-logs/pull/batch{{else}}/logs{{end}}/{{.Spec.Job}}/{{.Status.BuildID}}'
   job_url_prefix_config:
     '*': https://prow.travismclarke.com/view/gcs/
+    prow-clarketm/sample: https://prow-private.travismclarke.com/view/gcs/
   pod_pending_timeout: 60m
   default_decoration_configs:
     '*':
       utility_images: # using the tag we identified above
-        clonerefs: "gcr.io/k8s-prow/clonerefs:v20191101-c5bcba610"
-        initupload: "gcr.io/k8s-prow/initupload:v20191101-c5bcba610"
-        entrypoint: "gcr.io/prow-clarketm/entrypoint:edge"
-        sidecar: "gcr.io/k8s-prow/sidecar:v20191101-c5bcba610"
+        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200304-de88319ac"
+        initupload: "gcr.io/prow-clarketm/initupload:v20200304-de88319ac"
+        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200304-de88319ac"
+        sidecar: "gcr.io/prow-clarketm/sidecar:v20200304-de88319ac"
       gcs_configuration:
         bucket: prow-clarketm     # the bucket we just made
         path_strategy: explicit
@@ -43,9 +44,12 @@ deck:
       "artifacts/filtered.cov":
         - "coverage"
     announcement: "This page -- spyglass -- is the default viewer for prow.{{if .ArtifactPath}} For now, the deprecated gubernator page spyglass replaces <a href='https://gubernator.k8s.io/build/{{.ArtifactPath}}'>remains available</a>.{{end}}"
-  rerun_auth_config:
-    github_users:
-      - clarketm
+  rerun_auth_configs:
+    '*':
+      allow_anyone: true
+    prow-clarketm/prow:
+      github_users:
+        - clarketm
 
 tide:
   sync_period: 2m
@@ -168,6 +172,9 @@ periodics:
   - interval: 15m
     name: echo-test5a
     decorate: true
+    rerun_auth_config:
+      github_users:
+        - clarketm
     spec:
       containers:
         - image: gcr.io/slchase-canary/transfigure
@@ -248,10 +255,30 @@ presubmits:
       decorate: true
       always_run: true
       skip_report: false
+      rerun_auth_config:
+        github_users:
+          - clarketm
       spec:
         containers:
           - image: alpine
-            command: ["/bin/printenv"]
+            command: ["/bin/ls"]
+    - name: test-presubmit2
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/ls"]
+    - name: test-presubmit3
+      decorate: true
+      always_run: true
+      skip_report: false
+      spec:
+        containers:
+          - image: alpine
+            command: ["/bin/ls"]
+
   #    - name: test-presubmit-fail
   #      decorate: true
   #      optional: true
@@ -261,6 +288,7 @@ presubmits:
   #        containers:
   #          - image: alpine
   #            command: ["/bin/bash", "-c", "exit 1"]
+
   prow-clarketm/sample:
     - name: test-presubmit3
       decorate: true

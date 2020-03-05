@@ -62,11 +62,24 @@ spec:
       serviceAccountName: authentikos
       containers:
         - name: authentikos
-          image: gcr.io/istio-testing/authentikos:0.0.2
+          image: gcr.io/istio-testing/authentikos:0.0.4
           imagePullPolicy: Always
           args:
             - --verbose
-            - --secret=authentikos-token
+            - --secret=http-cookiefile
+            - --key=cookies
+            - --creds=/etc/creds/service-account.json
             - --namespace=test-pods
-            - --scopes=https://www.googleapis.com/auth/devstorage.full_control
-            - "--template=Authorization: Bearer {{.Token}}"
+            - --scopes=https://www.googleapis.com/auth/gerritcodereview
+            - |
+              --template=.googlesource.com	TRUE	/	TRUE	{{.Now | .TimeToUnix | .Add 3600}}	o	{{.Token}}
+              source.developers.google.com	FALSE	/	TRUE	{{.Now | .TimeToUnix | .Add 3600}}	o	{{.Token}}
+          volumeMounts:
+            - name: creds
+              mountPath: /etc/creds
+              readOnly: true
+      volumes:
+        - name: creds
+          secret:
+            defaultMode: 0644
+            secretName: gerrit-service-account
