@@ -72,6 +72,11 @@ tide:
   squash_label: tide/merge-method-squash
   rebase_label: tide/merge-method-rebase
   merge_label: tide/merge-method-merge
+  merge_method:
+    prow-clarketm: squash
+  merge_commit_template:
+    prow-clarketm:
+      body: "Co-authored-by: {{.Author.Login}} <{{.Author.Login}}@users.noreply.github.com>"
 
 branch-protection:
   orgs:
