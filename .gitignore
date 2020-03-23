@@ -8,7 +8,7 @@ gen
 *cluster.yaml
 *secrets.yaml
 *serviceaccount.yaml
-*rerun.yaml
+*rerun*.yaml
 
 # JSON
 service-account.json

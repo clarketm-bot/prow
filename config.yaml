@@ -11,10 +11,10 @@ plank:
   default_decoration_configs:
     '*':
       utility_images: # using the tag we identified above
-        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200304-de88319ac"
-        initupload: "gcr.io/prow-clarketm/initupload:v20200304-de88319ac"
-        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200304-de88319ac"
-        sidecar: "gcr.io/prow-clarketm/sidecar:v20200304-de88319ac"
+        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200319-d1c03dc9c"
+        initupload: "gcr.io/prow-clarketm/initupload:v20200319-d1c03dc9c"
+        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200319-d1c03dc9c"
+        sidecar: "gcr.io/prow-clarketm/sidecar:v20200319-d1c03dc9c"
       gcs_configuration:
         bucket: prow-clarketm     # the bucket we just made
         path_strategy: explicit
@@ -49,7 +49,7 @@ deck:
       allow_anyone: true
     prow-clarketm/prow:
       github_users:
-        - clarketm
+        - billybob
 
 tide:
   sync_period: 2m
@@ -262,7 +262,7 @@ presubmits:
       skip_report: false
       rerun_auth_config:
         github_users:
-          - clarketm
+          - j-orangeman
       spec:
         containers:
           - image: alpine
