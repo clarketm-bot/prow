@@ -81,6 +81,7 @@ tide:
 branch-protection:
   orgs:
     prow-clarketm:
+      allow_force_pushes: true
       protect: true
       repos:
         prow:
@@ -97,7 +98,10 @@ branch-protection:
           required_pull_request_reviews:
             required_approving_review_count: 1
         sample:
+          allow_force_pushes: true
           protect: true
+          required_pull_request_reviews:
+            required_approving_review_count: 1
 
 slack_reporter_configs:
   '*':
@@ -160,7 +164,7 @@ periodics:
         - image: alpine
           command: ["ping", "-c", "10", "www.google.com"]
   - interval: 15m
-    name: echo-test3
+    name: echo-test2
     decorate: true
     spec:
       containers:
@@ -246,13 +250,13 @@ postsubmits:
         containers:
           - image: alpine
             command: ["/bin/date"]
-  prow-clarketm/sample:
-    - name: test-postsubmit3
-      decorate: true
-      spec:
-        containers:
-          - image: alpine
-            command: ["/bin/date"]
+#  prow-clarketm/sample:
+#    - name: test-postsubmit3
+#      decorate: true
+#      spec:
+#        containers:
+#          - image: alpine
+#            command: ["/bin/date"]
 
 presubmits:
   prow-clarketm/prow:
@@ -294,21 +298,21 @@ presubmits:
   #          - image: alpine
   #            command: ["/bin/bash", "-c", "exit 1"]
 
-  prow-clarketm/sample:
-    - name: test-presubmit3
-      decorate: true
-      always_run: true
-      skip_report: false
-      spec:
-        containers:
-          - image: alpine
-            command: ["/bin/date"]
-    - name: test-presubmit-fail
-      decorate: true
-      always_run: true
-      skip_report: false
-      spec:
-        containers:
-          - image: alpine
-            command: ["/bin/bash", "-c", "exit 1"]
+#  prow-clarketm/sample:
+#    - name: test-presubmit3
+#      decorate: true
+#      always_run: true
+#      skip_report: false
+#      spec:
+#        containers:
+#          - image: alpine
+#            command: ["/bin/date"]
+#    - name: test-presubmit-fail
+#      decorate: true
+#      always_run: true
+#      skip_report: false
+#      spec:
+#        containers:
+#          - image: alpine
+#            command: ["/bin/bash", "-c", "exit 1"]
 
