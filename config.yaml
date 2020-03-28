@@ -164,7 +164,7 @@ periodics:
         - image: alpine
           command: ["ping", "-c", "10", "www.google.com"]
   - interval: 15m
-    name: echo-test2
+    name: echo-test3
     decorate: true
     spec:
       containers:
@@ -250,13 +250,6 @@ postsubmits:
         containers:
           - image: alpine
             command: ["/bin/date"]
-#  prow-clarketm/sample:
-#    - name: test-postsubmit3
-#      decorate: true
-#      spec:
-#        containers:
-#          - image: alpine
-#            command: ["/bin/date"]
 
 presubmits:
   prow-clarketm/prow:
@@ -297,22 +290,4 @@ presubmits:
   #        containers:
   #          - image: alpine
   #            command: ["/bin/bash", "-c", "exit 1"]
-
-#  prow-clarketm/sample:
-#    - name: test-presubmit3
-#      decorate: true
-#      always_run: true
-#      skip_report: false
-#      spec:
-#        containers:
-#          - image: alpine
-#            command: ["/bin/date"]
-#    - name: test-presubmit-fail
-#      decorate: true
-#      always_run: true
-#      skip_report: false
-#      spec:
-#        containers:
-#          - image: alpine
-#            command: ["/bin/bash", "-c", "exit 1"]
 
