@@ -11,10 +11,10 @@ plank:
   default_decoration_configs:
     '*':
       utility_images: # using the tag we identified above
-        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200429-5ef4db65c"
-        initupload: "gcr.io/prow-clarketm/initupload:v20200429-5ef4db65c"
-        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200429-5ef4db65c"
-        sidecar: "gcr.io/prow-clarketm/sidecar:v20200429-5ef4db65c"
+        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200429-16d15891f"
+        initupload: "gcr.io/prow-clarketm/initupload:v20200429-16d15891f"
+        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200429-16d15891f"
+        sidecar: "gcr.io/prow-clarketm/sidecar:v20200429-16d15891f"
       gcs_configuration:
         bucket: prow-clarketm     # the bucket we just made
         path_strategy: explicit
@@ -120,7 +120,6 @@ slack_reporter_configs:
       - postsubmit
       - periodic
     job_states_to_report:
-      - success
       - failure
       - error
     channel: test-failures

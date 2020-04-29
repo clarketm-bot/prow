@@ -5,6 +5,7 @@ triggers:
 approve:
   - repos:
       - prow-clarketm
+    lgtm_acts_as_approve: true
 
 size:
   s:   20
