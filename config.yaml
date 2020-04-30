@@ -125,6 +125,7 @@ slack_reporter_configs:
     channel: test-failures
     report_template: "Job *{{.Spec.Job}}* of type *{{.Spec.Type}}* ended with state *{{.Status.State}}*. <{{.Status.URL}}|View logs>"
 
+
 github_reporter:
   job_types_to_report:
     - presubmit
