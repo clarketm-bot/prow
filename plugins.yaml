@@ -6,6 +6,7 @@ approve:
   - repos:
       - prow-clarketm
     lgtm_acts_as_approve: true
+    implicit_self_approve: true
 
 size:
   s:   20
