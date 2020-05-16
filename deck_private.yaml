@@ -79,7 +79,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: deck-private
-          image: gcr.io/prow-clarketm/deck:v20200516-d96f8c4dd
+          image: gcr.io/prow-clarketm/deck:v20200516-e6d378ebe
           ports:
             - name: http
               containerPort: 8080

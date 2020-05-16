@@ -11,10 +11,10 @@ plank:
   default_decoration_configs:
     '*':
       utility_images: # using the tag we identified above
-        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200516-d96f8c4dd"
-        initupload: "gcr.io/prow-clarketm/initupload:v20200516-d96f8c4dd"
-        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200516-d96f8c4dd"
-        sidecar: "gcr.io/prow-clarketm/sidecar:v20200516-d96f8c4dd"
+        clonerefs: "gcr.io/prow-clarketm/clonerefs:v20200516-e6d378ebe"
+        initupload: "gcr.io/prow-clarketm/initupload:v20200516-e6d378ebe"
+        entrypoint: "gcr.io/prow-clarketm/entrypoint:v20200516-e6d378ebe"
+        sidecar: "gcr.io/prow-clarketm/sidecar:v20200516-e6d378ebe"
       gcs_configuration:
         bucket: prow-clarketm     # the bucket we just made
         path_strategy: explicit
