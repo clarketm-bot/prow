@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 180
       containers:
         - name: cherrypicker
-          image: gcr.io/prow-clarketm/cherrypicker:v20200516-e6d378ebe
+          image: gcr.io/prow-clarketm/cherrypicker:v20200516-6f9c05528
           args:
             - --dry-run=false
             - --use-prow-assignments=false
