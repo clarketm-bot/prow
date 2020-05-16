@@ -142,7 +142,7 @@ spec:
       terminationGracePeriodSeconds: 180
       containers:
         - name: hook
-          image: gcr.io/prow-clarketm/hook:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/hook:v20200516-76ec702ab
           imagePullPolicy: Always
           args:
             - --dry-run=false
@@ -221,7 +221,7 @@ spec:
       serviceAccountName: "plank"
       containers:
         - name: plank
-          image: gcr.io/prow-clarketm/plank:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/plank:v20200516-76ec702ab
           args:
             - --dry-run=false
             - --config-path=/etc/config/config.yaml
@@ -277,7 +277,7 @@ spec:
       serviceAccountName: "sinker"
       containers:
         - name: sinker
-          image: gcr.io/prow-clarketm/sinker:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/sinker:v20200516-76ec702ab
           args:
             - --kubeconfig=/etc/kubeconfig/config
             - --config-path=/etc/config/config.yaml
@@ -323,7 +323,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: deck
-          image: gcr.io/prow-clarketm/deck:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/deck:v20200516-76ec702ab
           args:
             - --config-path=/etc/config/config.yaml
             - --tide-url=http://tide/
@@ -432,7 +432,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: horologium
-          image: gcr.io/prow-clarketm/horologium:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/horologium:v20200516-76ec702ab
           args:
             - --config-path=/etc/config/config.yaml
             - --dry-run=false
@@ -467,7 +467,7 @@ spec:
       serviceAccountName: "tide"
       containers:
         - name: tide
-          image: gcr.io/prow-clarketm/tide:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/tide:v20200516-76ec702ab
           args:
             - --dry-run=false
             - --config-path=/etc/config/config.yaml
@@ -556,7 +556,7 @@ spec:
       terminationGracePeriodSeconds: 180
       containers:
         - name: statusreconciler
-          image: gcr.io/prow-clarketm/status-reconciler:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/status-reconciler:v20200516-76ec702ab
           args:
             - --dry-run=false
             - --continue-on-error=true
@@ -934,7 +934,7 @@ spec:
         spec:
           containers:
             - name: branchprotector
-              image: gcr.io/prow-clarketm/branchprotector:v20200516-6f9c05528
+              image: gcr.io/prow-clarketm/branchprotector:v20200516-76ec702ab
               args:
                 - --config-path=/etc/config/config.yaml
                 - --github-token-path=/etc/github/oauth
@@ -1011,7 +1011,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: crier
-          image: gcr.io/prow-clarketm/crier:v20200516-6f9c05528
+          image: gcr.io/prow-clarketm/crier:v20200516-76ec702ab
           imagePullPolicy: Always
           args:
             - --slack-workers=1
