@@ -23,7 +23,7 @@ spec:
             - --dry-run=false
             - --use-prow-assignments=false
             - "--conditional-labels=a=b,c,d;h=j,k,l"
-            - "--labels=fake"
+            - "--labels=fake,cat,dog"
             - --create-issue-on-failure=true
             - --github-endpoint=http://ghproxy
             - --github-endpoint=https://api.github.com
